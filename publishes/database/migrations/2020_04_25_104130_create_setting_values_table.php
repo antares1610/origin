@@ -17,6 +17,7 @@ class CreateSettingValuesTable extends Migration
             $table->id();
             $table->integer('setting_id');
             $table->string('code');
+            $table->string('form_name');
             $table->string('name');
             $table->text('value');
             $table->integer('position');
