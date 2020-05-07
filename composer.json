@@ -1,0 +1,26 @@
+{
+    "name": "antares1610/origin",
+    "description": "Origin",
+    "authors": [
+        {
+            "name": "Antares1610",
+            "email": "harishariyanto285@yahoo.com"
+        }
+    ],
+    "require": {},
+    "extra": {
+    	"laravel": {
+    		"providers": [
+    			"Antares1610\\Origin\\Providers\\OriginServiceProvider"
+    		]
+    	}
+    },
+    "autoload": {
+    	"psr-4": {
+    		"Antares1610\\Origin\\": "src"
+    	},
+    	"files": [
+    		"src/Helpers/settings.php"
+    	]
+    }
+}
