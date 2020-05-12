@@ -16,7 +16,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role_id'
+        'name', 'email', 'password', 'role_id', 'avatar'
     ];
 
     /**
@@ -36,4 +36,49 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function avatar()
+    {
+    	if ($this->avatar) {
+    		return $this->avatar;
+    	}
+    	else {
+    		$name = $this->name;
+
+    		$backgrounds = [
+    			'EF5350',
+    			'EC407A',
+    			'AB47BC',
+    			'7E57C2',
+    			'5C6BC0',
+    			'1E88E5',
+    			'0288D1',
+    			'0097A7',
+    			'009688',
+    			'43A047',
+    			'558B2F',
+    			'827717',
+    			'E65100',
+    			'F4511E',
+    			'A1887F',
+    			'757575'
+    		];
+    		$key = array_rand($backgrounds);
+
+    		$data = [
+    			'name' 			=> $name,
+    			'background' 	=> $backgrounds[$key],
+    			'color' 		=> 'fff',
+    			'size'			=> 256
+    		];
+    		$data = http_build_query($data);
+
+    		$url = 'https://ui-avatars.com/api/?' . $data;
+
+    		$this->avatar = $url;
+    		$this->save();
+
+    		return $url;
+    	}
+    }
 }

@@ -4,19 +4,20 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Alert extends Component
+class Avatar extends Component
 {
-	public $type;
-	public $closeable;
+	public $url;
+	public $size;
+	
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($type = 'success', $closeable = true)
+    public function __construct($url= '', $size = 128)
     {
-        $this->type = $type;
-        $this->closeable = $closeable;
+        $this->url = $url;
+        $this->size = $size;
     }
 
     /**
@@ -26,6 +27,6 @@ class Alert extends Component
      */
     public function render()
     {
-        return view('components.alert');
+        return view('components.avatar');
     }
 }

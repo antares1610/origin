@@ -20,3 +20,15 @@ Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
 	Route::get('{setting}', 'Admin\SettingController@edit')->name('edit');
 	Route::put('{setting}', 'Admin\SettingController@update');
 });
+
+Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
+	Route::get('/', 'User\ProfileController@my_profile')->name('my_profile');
+	Route::get('edit', 'User\ProfileController@edit')->name('edit');
+	Route::put('edit', 'User\ProfileController@update');
+	Route::get('/{user}', 'User\ProfileController@profile')->name('show');
+});
+
+Route::group(['prefix' => 'avatar', 'as' => 'avatar.'], function () {
+	Route::get('/', 'User\AvatarController@edit')->name('edit');
+	Route::post('/', 'User\AvatarController@update');
+});
