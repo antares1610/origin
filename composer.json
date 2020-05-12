@@ -7,7 +7,9 @@
             "email": "harishariyanto285@yahoo.com"
         }
     ],
-    "require": {},
+    "require": {
+    	"kosinix/grafika": "dev-master",
+    },
     "extra": {
     	"laravel": {
     		"providers": [
