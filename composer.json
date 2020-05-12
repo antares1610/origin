@@ -8,7 +8,7 @@
         }
     ],
     "require": {
-    	"kosinix/grafika": "dev-master",
+    	"kosinix/grafika": "dev-master"
     },
     "extra": {
     	"laravel": {
