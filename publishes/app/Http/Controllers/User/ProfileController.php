@@ -28,7 +28,7 @@ class ProfileController extends Controller
 	public function profile(Request $request, User $user)
 	{
 		$breadcrumb = [
-			'Profile' => ''
+			'Profil' => ''
 		];
 		return view('user.profile.profile', compact('breadcrumb', 'user'));
 	}
@@ -48,6 +48,7 @@ class ProfileController extends Controller
 	public function update(Request $request)
 	{
 		$user = $request->user();
+		$old_email = $user->email;
 
 		$data = $request->validate([
 			'name' => ['required', 'regex:/^[a-zA-Z\s]+$/'],
@@ -55,6 +56,11 @@ class ProfileController extends Controller
 		]);
 
 		$user->update($data);
+
+		if ($old_email != $data['email']) {
+			$user->update(['email_verified_at' => null]);
+			$user->sendEmailVerificationNotification();
+		}
 
 		return redirect()->route('profile.show', ['user' => $user]);
 	}

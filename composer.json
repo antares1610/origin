@@ -8,7 +8,8 @@
         }
     ],
     "require": {
-    	"kosinix/grafika": "dev-master"
+    	"kosinix/grafika": "dev-master",
+    	"yajra/laravel-datatables-oracle": "~9.0"
     },
     "extra": {
     	"laravel": {

@@ -32,3 +32,6 @@ Route::group(['prefix' => 'avatar', 'as' => 'avatar.'], function () {
 	Route::get('/', 'User\AvatarController@edit')->name('edit');
 	Route::post('/', 'User\AvatarController@update');
 });
+
+Route::get('users/datatables', 'Admin\UserController@datatables')->name('users.datatables');
+Route::resource('users', 'Admin\UserController');

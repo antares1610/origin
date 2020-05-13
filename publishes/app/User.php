@@ -16,7 +16,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role_id', 'avatar'
+        'name', 'email', 'password', 'role_id', 'avatar', 'email_verified_at'
     ];
 
     /**
@@ -79,6 +79,24 @@ class User extends Authenticatable implements MustVerifyEmail
     		$this->save();
 
     		return $url;
+    	}
+    }
+
+    public function role()
+    {
+    	return $this->belongsTo('App\Role');
+    }
+
+    public function name()
+    {
+    	if ($this->role_id == 1) {
+    		return $this->name . '';
+    	}
+    	elseif ($this->role_id == 2) {
+    		return $this->name;
+    	}
+    	else {
+    		return $this->name;
     	}
     }
 }
