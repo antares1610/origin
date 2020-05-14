@@ -37,6 +37,16 @@ class SettingSeeder extends Seeder
         	'extra'			=> $extra
         ]);
 
+        DB::table('setting_values')->insert([
+        	'setting_id' 	=> 1,
+        	'code' 			=> 'app.description',
+        	'form_name'		=> 'app_description',
+        	'name' 			=> 'Deskripsi Aplikasi',
+        	'value' 		=> 'Hello, World!',
+        	'position' 		=> 2,
+        	'extra'			=> $extra
+        ]);
+
         // Setting Style
     	$name = 'Style';
     	DB::table('settings')->insert([
