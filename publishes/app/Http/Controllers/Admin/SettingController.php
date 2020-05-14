@@ -16,6 +16,8 @@ class SettingController extends Controller
 
 	public function index()
 	{
+		$this->authorize('access', 'settings');
+		
     	$breadcrumb = [
     		'Pengaturan' => ''
     	];
@@ -27,6 +29,8 @@ class SettingController extends Controller
 
 	public function edit(Setting $setting)
 	{
+		$this->authorize('access', 'settings');
+
     	$breadcrumb = [
     		'Pengaturan' => route('settings.index'),
     		'Pengaturan ' . $setting->name => ''
@@ -37,6 +41,8 @@ class SettingController extends Controller
 
 	public function update(Request $request, Setting $setting)
 	{
+		$this->authorize('access', 'settings');
+
 		$setting_values = $setting->setting_values;
 		$validations = [];
 

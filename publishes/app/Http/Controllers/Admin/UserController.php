@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use DataTables;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -24,6 +25,8 @@ class UserController extends Controller
      */
     public function index()
     {
+    	$this->authorize('access', 'users.index');
+    	
         $breadcrumb = [
         	'Pengguna' => ''
         ];
@@ -35,6 +38,8 @@ class UserController extends Controller
 
     public function datatables(Request $request)
     {
+    	$this->authorize('access', 'users.index');
+
     	if ($request->ajax() ||  true) {
 	    	return DataTables::of(User::get())
 	    		->only(['name', 'email', 'role', 'action', 'created_at', 'timestamp'])
@@ -43,7 +48,11 @@ class UserController extends Controller
 	    		})
 	    		->addColumn('action', function (User $user) {
 	    			$output = '<a href="' . route('profile.show', ['user' => $user]) . '" target="_blank" class="btn btn-primary btn-sm">Profil</a> ';
-	    			$output .= '<a href="' . route('users.edit', ['user' => $user]) . '" class="btn btn-primary btn-sm">Edit</a>';
+
+	    			if (Gate::allows('access', 'users.edit')) {
+	    				$output .= '<a href="' . route('users.edit', ['user' => $user]) . '" class="btn btn-primary btn-sm">Edit</a>';
+	    			}
+
 	    			return $output;
 	    		})
 	    		->addColumn('timestamp', function (User $user) {
@@ -70,6 +79,8 @@ class UserController extends Controller
      */
     public function create()
     {
+    	$this->authorize('access', 'users.create');
+
         $breadcrumb = [
         	'Pengguna' 				=> route('users.index'),
         	'Buat Pengguna Baru' 	=> ''
@@ -93,6 +104,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+    	$this->authorize('access', 'users.create');
+
         $data = $request->validate([
             'name' 		=> ['required', 'string', 'regex:/^[a-zA-Z\s]+$/', 'max:255'],
             'email' 	=> ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -127,6 +140,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+    	$this->authorize('access', 'users.edit');
+
         $breadcrumb = [
         	'Pengguna' 				=> route('users.index'),
         	'Edit Pengguna' 		=> ''
@@ -151,6 +166,8 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+    	$this->authorize('access', 'users.edit');
+
     	$message = 'Profil ' . $user->name . ' berhasil diedit';
     	$old_email = $user->email;
 

@@ -7,10 +7,12 @@
 	<x-card-large>
 		<x-title>Pengguna</x-title>
 
-		<div class="text-right">
-			<a href="{{ route('users.create') }}" class="btn btn-primary">Buat Pengguna Baru</a>
-		</div>
-		<hr>
+		@can('access', 'users.create')
+			<div class="text-right">
+				<a href="{{ route('users.create') }}" class="btn btn-primary">Buat Pengguna Baru</a>
+			</div>
+			<hr>
+		@endcan
 
 		@if (session('success'))
 			<x-alert type="success">

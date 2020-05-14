@@ -29,6 +29,7 @@ class RoleSeeder extends Seeder
         DB::table('access_groups')->insert([
         	['name' => 'Common Actions'], // ID 1
         	['name' => 'Roles'], // ID 2
+        	['name' => 'Pengguna'], // ID 3
         ]);
 
         // Accesses seeder
@@ -39,8 +40,14 @@ class RoleSeeder extends Seeder
         		'code' 				=> 'admin'
         	],
         	[
+        		'access_group_id' 	=> 1,
+        		'name' 				=> 'Ubah Pengaturan',
+        		'code' 				=> 'settings'
+        	],
+
+        	[
 	        	'access_group_id' 	=> 2,
-	        	'name' 				=> 'Roles Index',
+	        	'name' 				=> 'Melihat Daftar Role',
 	        	'code' 				=> 'roles.index'
         	],
         	[
@@ -62,6 +69,22 @@ class RoleSeeder extends Seeder
 	        	'access_group_id' 	=> 2,
 	        	'name' 				=> 'Edit Hak Akses Role',
 	        	'code' 				=> 'roles.accesses'
+        	],
+
+        	[
+	        	'access_group_id' 	=> 3,
+	        	'name' 				=> 'Melihat Daftar Pengguna',
+	        	'code' 				=> 'users.index'
+        	],
+        	[
+	        	'access_group_id' 	=> 3,
+	        	'name' 				=> 'Buat Pengguna Baru',
+	        	'code' 				=> 'users.create'
+        	],
+        	[
+	        	'access_group_id' 	=> 3,
+	        	'name' 				=> 'Edit Pengguna',
+	        	'code' 				=> 'users.edit'
         	],
         ]);
 
