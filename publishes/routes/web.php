@@ -35,3 +35,8 @@ Route::group(['prefix' => 'avatar', 'as' => 'avatar.'], function () {
 
 Route::get('users/datatables', 'Admin\UserController@datatables')->name('users.datatables');
 Route::resource('users', 'Admin\UserController');
+
+Route::group(['prefix' => 'account', 'as' => 'account.'], function () {
+	Route::get('password', 'User\PasswordController@index')->name('password');
+	Route::put('password', 'User\PasswordController@update');
+});
