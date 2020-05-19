@@ -1,4 +1,7 @@
 <div class="form-group">
+	@if (!empty($label))
+		<div class="mb-2">{{ $label }}</div>
+	@endif
 	<div class="custom-file">
 		<input type="file" class="custom-file-input {{ $invalid ? 'is-invalid' : '' }}" id="{{  $id }}" name="{{  $name }}">
 		<label class="custom-file-label" for="{{  $id }}">Pilih file</label>

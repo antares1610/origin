@@ -32,6 +32,13 @@ class AvatarController extends Controller
 			'avatar' => ['required', 'file', 'max:5120', 'image']
 		]);
 
+		// Hapus File Lama
+		Storage::disk('public')->delete('avatars/' . $request->user()->id . '.jpeg');
+		Storage::disk('public')->delete('avatars/' . $request->user()->id . '.jpg');
+		Storage::disk('public')->delete('avatars/' . $request->user()->id . '.png');
+		Storage::disk('public')->delete('avatars/' . $request->user()->id . '.gif');
+		// [END] Hapus File Lama
+
 		$extension = $request->avatar->extension();
 
 		$path = $request->avatar->storeAs('avatars', $request->user()->id . '.' . $extension, 'public');
@@ -46,8 +53,6 @@ class AvatarController extends Controller
 		$editor->open($image, $path);
 		$editor->resizeFill($image, 256, 256);
 		$editor->save($image, $path);
-
-		Storage::disk('public')->delete($path . '.' . $extension);
 
 		return redirect()->back();
 	}

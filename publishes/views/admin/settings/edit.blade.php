@@ -9,7 +9,7 @@
 	<x-card-large>
 		<x-title>Pengaturan {{ $setting->name }}</x-title>
 
-		<form action="{{ route('settings.edit', ['setting' => $setting]) }}" method="POST">
+		<form action="{{ route('settings.edit', ['setting' => $setting]) }}" method="POST" enctype="multipart/form-data">
 			@csrf
 			@method('PUT')
 			@foreach ($setting->setting_values()->orderBy('position', 'asc')->get() as $setting_value)
@@ -26,6 +26,22 @@
 				@switch($extra->type)
 					@case('text')
 						<x-form-group-text :label="$setting_value->name" :name="$setting_value->form_name" :id="'setting' . $setting_value->id" :value="$val" :message="$errors->first($setting_value->form_name)"/>
+						@break
+					
+					@case('textarea')
+						<x-form-group-textarea :label="$setting_value->name" :name="$setting_value->form_name" :id="'setting' . $setting_value->id" :value="$val" :message="$errors->first($setting_value->form_name)"/>
+						@break
+					
+					@case('image')
+						@if (!empty($setting_value->value))
+							<div class="row mb-2">
+								<div class="col col-12 col-md-6">
+									<img src="{{ $setting_value->value }}" class="img-fluid">
+								</div>
+							</div>
+						@endif
+
+						<x-file :id="'setting' . $setting_value->id" :name="$setting_value->form_name" :message="$errors->first($setting_value->form_name)" label="Style"/>
 						@break
 
 					@default

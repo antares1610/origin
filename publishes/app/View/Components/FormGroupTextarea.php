@@ -4,25 +4,27 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class File extends Component
+class FormGroupTextarea extends Component
 {
-	public $id;
+	public $label;
 	public $name;
+	public $id;
+	public $value;
 	public $invalid;
     public $message;
-    public $label;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($id = '', $name = '', $message = '', $label = '')
+    public function __construct($label = 'Field Name', $name = '', $id = '', $value = '', $message = '')
     {
-        $this->id = $id;
-        $this->name = $name;
-        $this->message = $message;
-        $this->label = $label;
+    	$this->label 	= $label;
+        $this->name 	= $name;
+		$this->id 		= $id;
+		$this->value 	= $value;
+        $this->message 	= $message;
 
         if (empty($message)) {
         	$this->invalid = false;
@@ -39,6 +41,6 @@ class File extends Component
      */
     public function render()
     {
-        return view('components.file');
+        return view('components.form-group-textarea');
     }
 }
