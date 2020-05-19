@@ -52,7 +52,7 @@ class SettingController extends Controller
 			$extra = json_decode($setting_value->extra, true);
 
 			if ($extra['type'] == 'image') {
-				$validations[$setting_value->form_name] = ['required', 'file', 'max:5120', 'image'];
+				$validations[$setting_value->form_name] = ['file', 'max:5120', 'image'];
 			}
 			else {
 				$validations[$setting_value->form_name] = $extra['validation'];
