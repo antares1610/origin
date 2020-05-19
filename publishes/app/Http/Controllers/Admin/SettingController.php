@@ -66,7 +66,7 @@ class SettingController extends Controller
 			$extra = json_decode($setting_value->extra, true);
 			$type = $extra['type'];
 
-			if ($type == 'image') {
+			if ($type == 'image' && $request->has($setting_value->form_name)) {
 				// Hapus File Lama
 				Storage::disk('public')->delete('settings/' . $setting_value->form_name . '.jpeg');
 				Storage::disk('public')->delete('settings/' . $setting_value->form_name . '.jpg');
