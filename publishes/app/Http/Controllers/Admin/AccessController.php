@@ -19,8 +19,8 @@ class AccessController extends Controller
 		$this->authorize('access', 'roles.accesses');
 		
 		$breadcrumb = [
-    		'Role' 			=> route('roles.index'),
-    		'Akses' 		=> ''
+			'Role' 			=> route('roles.index'),
+			'Akses' 		=> ''
 		];
 
 		$access_groups = AccessGroup::get();

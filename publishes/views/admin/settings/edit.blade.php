@@ -41,7 +41,7 @@
 							</div>
 						@endif
 
-						<x-file :id="'setting' . $setting_value->id" :name="$setting_value->form_name" :message="$errors->first($setting_value->form_name)" label="Style"/>
+						<x-file :id="'setting' . $setting_value->id" :name="$setting_value->form_name" :message="$errors->first($setting_value->form_name)" :label="$setting_value->name"/>
 						@break
 
 					@default

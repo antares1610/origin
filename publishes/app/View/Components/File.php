@@ -9,7 +9,7 @@ class File extends Component
 	public $id;
 	public $name;
 	public $invalid;
-    public $message;
+	public $message;
     public $label;
 
     /**

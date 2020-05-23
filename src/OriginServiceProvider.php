@@ -28,6 +28,7 @@ class OriginServiceProvider extends ServiceProvider
         $this->publishes([
         	__DIR__ . '/../publishes/routes' 	=> base_path('routes'),
         	__DIR__ . '/../publishes/views' 	=> resource_path('views'),
+        	__DIR__ . '/../publishes/stubs' 	=> resource_path('stubs'),
         	__DIR__ . '/../publishes/app' 		=> app_path(),
         	__DIR__ . '/../publishes/database' 	=> database_path()
         ]);

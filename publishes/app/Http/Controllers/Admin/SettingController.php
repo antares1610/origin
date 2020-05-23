@@ -79,7 +79,13 @@ class SettingController extends Controller
 
 				$values[$setting_value->form_name] = asset('storage/' . $path);
 
-				$edit = $extra['edit'];
+				if (!empty($extra['edit'])) {
+					$edit = $extra['edit'];	
+				}
+				else {
+					$edit = [];
+				}
+				
 				$editor = Grafika::createEditor();
 				$editor->open($image, 'storage/' . $path);
 
