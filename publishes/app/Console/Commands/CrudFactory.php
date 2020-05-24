@@ -294,8 +294,10 @@ class CrudFactory extends Command
 			$validations	= $config[3];
 
 			if ($type == 'file') {
-				$output .= '$path = $request->' . $form_name . '->store(\'' . $name_snake_plural . '\', \'public\');' . "\r\n";
-				$output .= '$data[\'' . $form_name . '\'] = $path;' . "\r\n";
+				$output .= 'if ($request->hasFile(\'' . $form_name . '\')) {' . "\r\n";
+				$output .= '	$path = $request->' . $form_name . '->store(\'' . $name_snake_plural . '\', \'public\');' . "\r\n";
+				$output .= '	$data[\'' . $form_name . '\'] = $path;' . "\r\n";
+				$output .= '}' . "\r\n";
 			}
     	}
 
