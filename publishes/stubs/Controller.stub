@@ -96,7 +96,7 @@ class {{name}}Controller extends Controller
         return redirect()->route('{{name_snake_plural}}.index')->with('success', 'Berhasil diedit');
     }
 
-    public function destroy({{name}} ${{name_snake}})
+    public function destroy(Request $request, {{name}} ${{name_snake}})
     {
     	$this->authorize('access', '{{name_snake_plural}}.destroy');
 
