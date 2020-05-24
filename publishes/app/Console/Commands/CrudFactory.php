@@ -319,7 +319,9 @@ class CrudFactory extends Command
 			$validations	= $config[3];
 
 			if ($type == 'file') {
-				$output .= 'Storage::disk(\'public\')->delete($' . $name_snake . '->' . $form_name . ');' . "\r\n";
+				$output .= 'if ($request->isMethod(\'delete\') || $request->hasFile(\'' . $form_name . '\')) {' . "\r\n";
+				$output .= '	Storage::disk(\'public\')->delete($' . $name_snake . '->' . $form_name . ');' . "\r\n";
+				$output .= '}' . "\r\n";
 			}
     	}
 
